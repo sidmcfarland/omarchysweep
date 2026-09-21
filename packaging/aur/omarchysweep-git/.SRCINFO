@@ -1,6 +1,6 @@
 pkgbase = omarchysweep-git
 	pkgdesc = Classic minesweeper for the terminal, themed live by Omarchy
-	pkgver = r1.9fc69a5
+	pkgver = r2.c7e1447
 	pkgrel = 1
 	url = https://github.com/sidmcfarland/omarchysweep
 	arch = any
