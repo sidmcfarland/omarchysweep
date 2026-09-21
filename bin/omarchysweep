@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Launcher: runs the game from wherever this repo is checked out.
+set -euo pipefail
+root="$(cd -- "$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")/.." && pwd)"
+exec python3 -c 'import sys; sys.path.insert(0, sys.argv.pop(1)); from omarchysweep.__main__ import main; raise SystemExit(main())' "$root" "$@"

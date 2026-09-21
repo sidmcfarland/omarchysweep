@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OmarchySweep
+GenericName=Minesweeper
+Comment=Classic minesweeper for the terminal, themed by Omarchy
+Exec=xdg-terminal-exec --app-id=TUI.float -e omarchysweep
+Terminal=false
+Icon=omarchysweep
+Categories=Game;LogicGame;
+Keywords=minesweeper;mines;puzzle;game;sweep;
+StartupNotify=true
