@@ -11,7 +11,17 @@ makepkg -si
 ```
 
 Publishing needs an [AUR account](https://aur.archlinux.org/register) with your
-SSH public key added under *My Account → SSH Public Key*. Then:
+SSH public key added under *My Account → SSH Public Key*.
+
+> **Blocked as of 2026-09-21.** The AUR has paused new account registration
+> while it deals with automated signups (HTTP 503 on the register page). There
+> is no manual queue; it reopens when it reopens, announced on
+> [aur-general](https://lists.archlinux.org/mailman3/lists/aur-general.lists.archlinux.org/)
+> and the [Arch news feed](https://archlinux.org/feeds/news/). Do not script
+> retries against the register page. Until then, `makepkg -si` in this
+> directory builds and installs the identical package.
+
+Once you have an account:
 
 ```bash
 git clone ssh://aur@aur.archlinux.org/omarchysweep-git.git

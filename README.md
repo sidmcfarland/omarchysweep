@@ -11,19 +11,26 @@ the rest of the desktop — and it re-colours itself the moment you switch theme
 
 ## Install
 
-On Omarchy, from the AUR:
-
-```bash
-omarchy pkg aur add omarchysweep-git
-```
-
-Or from source, anywhere:
+From source, anywhere:
 
 ```bash
 git clone https://github.com/sidmcfarland/omarchysweep
 cd omarchysweep
 ./install.sh
 ```
+
+Or build it as a proper Arch package:
+
+```bash
+cd omarchysweep/packaging/aur/omarchysweep-git
+makepkg -si
+```
+
+That is the same `omarchysweep-git` package intended for the AUR — installed
+system-wide, uninstalled with `pacman -R omarchysweep-git`. It is not on the
+AUR yet: Arch has paused new account registration while they deal with a wave
+of automated signups, so `omarchy pkg aur add omarchysweep-git` will not work
+until that reopens and the package is submitted.
 
 `install.sh` symlinks the launcher into `~/.local/bin`, installs the icon, and
 adds an **OmarchySweep** entry to the Omarchy menu — all user-local, no sudo.
