@@ -1,0 +1,52 @@
+# Maintainer: Sid McFarland <sidney.e.mcfarland@gmail.com>
+
+pkgname=omarchysweep-git
+_pkgname=omarchysweep
+pkgver=r1.0000000
+pkgrel=1
+pkgdesc="Classic minesweeper for the terminal, themed live by Omarchy"
+arch=('any')
+url="https://github.com/sidmcfarland/omarchysweep"
+license=('MIT')
+depends=('python' 'xdg-terminal-exec')
+makedepends=('git')
+optdepends=('omarchy: follow the active desktop theme')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=("$_pkgname::git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$_pkgname"
+  printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+check() {
+  cd "$srcdir/$_pkgname"
+  python -m unittest discover -s tests
+}
+
+package() {
+  cd "$srcdir/$_pkgname"
+
+  install -dm755 "$pkgdir/usr/lib/$_pkgname"
+  cp -r "$_pkgname" "$pkgdir/usr/lib/$_pkgname/$_pkgname"
+  # check() leaves caches that embed $srcdir; rebuild them against the
+  # installed path instead.
+  find "$pkgdir/usr/lib/$_pkgname" -name __pycache__ -type d -prune -exec rm -rf {} +
+  python -m compileall -q -o 0 -o 1 -s "$pkgdir" "$pkgdir/usr/lib/$_pkgname"
+  find "$pkgdir/usr/lib/$_pkgname" -type f -exec chmod 644 {} +
+  find "$pkgdir/usr/lib/$_pkgname" -type d -exec chmod 755 {} +
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" <<'LAUNCHER'
+#!/bin/sh
+exec python3 -P -c 'import sys; sys.path.insert(0, "/usr/lib/omarchysweep"); from omarchysweep.__main__ import main; raise SystemExit(main())' "$@"
+LAUNCHER
+
+  install -Dm644 applications/OmarchySweep.desktop \
+    "$pkgdir/usr/share/applications/OmarchySweep.desktop"
+  install -Dm644 icons/omarchysweep.svg \
+    "$pkgdir/usr/share/icons/hicolor/scalable/apps/omarchysweep.svg"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$_pkgname/README.md"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+}

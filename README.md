@@ -4,25 +4,10 @@ Classic Minesweeper for the terminal, built for [Omarchy](https://omarchy.org/).
 It reads the palette of whatever theme you are running, so the board looks like
 the rest of the desktop — and it re-colours itself the moment you switch themes.
 
-```
-╭─ OmarchySweep · Retro 82 ──────────────╮
-│ Beginner                9x9 · 10 mines │
-│ ⚑  8            00:14          playing │
-├────────────────────────────────────────┤
-│           · · · · · · · · ·            │
-│           · · 1     1 ⚑ 2 ·            │
-│           · · 1     1 2 2 ·            │
-│           · 2 1       1 1 1            │
-│           · ⚑ 1       1 · ·            │
-│           · 2 2 1 1 1 2 · ·            │
-│           · · · · · · · · ·            │
-│           · · · · · · · · ·            │
-│           · · · · · · · · ·            │
-├────────────────────────────────────────┤
-│ ←↑↓→ move  f flag  d dig               │
-│ n new  o setup  ? help  q quit         │
-╰────────────────────────────────────────╯
-```
+<p align="center">
+  <img src="docs/screenshots/board-retro-82.png" width="430"
+       alt="OmarchySweep mid-game on the Retro 82 theme">
+</p>
 
 ## Install
 
@@ -79,6 +64,11 @@ it. Clear every box that is not a mine to win. Best times are kept per grid in
 Press `o` in game. `↑` `↓` pick a field, `←` `→` adjust it, `pgup`/`pgdn` step
 by five, `enter` starts the new board.
 
+<p align="center">
+  <img src="docs/screenshots/setup.png" width="560"
+       alt="The setup screen: difficulty, width, height and mines">
+</p>
+
 | Preset | Grid | Mines |
 | --- | --- | --- |
 | Beginner | 9×9 | 10 |
@@ -102,6 +92,17 @@ omarchysweep --theme-info                     # print the resolved palette
 ```
 
 ## Theming
+
+The same game, the same minute, two `omarchy theme set` calls apart:
+
+<table>
+<tr>
+<td align="center"><img src="docs/screenshots/board-tokyo-night.png" width="330"
+    alt="OmarchySweep on Tokyo Night"><br><sub>Tokyo Night</sub></td>
+<td align="center"><img src="docs/screenshots/board-rose-pine.png" width="330"
+    alt="OmarchySweep on Rose Pine"><br><sub>Rose Pine</sub></td>
+</tr>
+</table>
 
 Colours are resolved in this order:
 
